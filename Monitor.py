@@ -1,21 +1,39 @@
 import os
 import time
 import psutil
+import time
 from flask import Flask, jsonify
 
 app = Flask(__name__)
 
 @app.route('/')
+#def setup():
+#    return ""
 
-def displayUsage(cpuUsage, memUsage, bars=50):
-    cpu = cpuUsage/100.0
-    cpu_bar = '[' + ('█' * int(cpu * bars)) + ('-' * (bars- int(cpu * bars))) + ']'
+@app.route('/api/stats')
+def getUsage():
+    # One-line getters, for formatting
+    cpu = psutil.cpu_percent()
+    mem = psutil.virtual_memory().percent
+    upt = (time.time() - psutil.boot_time())/(60*60*24)
+    sto = psutil.disk_usage('/').percent
+    
+    # Block to deal with network
+    net = psutil.net_io_counters()
+    brv = net.bytes_recv
+    bst = net.bytes_sent
 
-    mem = memUsage/100.0
-    mem_bar = '['+ ('█' * int(mem * bars)) + ('-' * (bars- int(mem * bars))) + ']'
+    # Block to deal with temperatures
+    temps = psutil.sensors_temperatures()
+    tmp = 0
+    count = 0
+    if 'coretemp' in temps:
+        for core in temps['coretemp']:
+            tmp += core.current
+            count += 1
+    tmp = tmp/count
 
-    print(f"\rCPU: {cpu_bar} {cpuUsage:.2f}%  ", end="")
-    print(f"MEM: {mem_bar} {memUsage:.2f}%  ", end="\r")
+    return jsonify({"CPU": cpu, "MEM": mem, "UPT": upt, "STO": sto, "BRV": brv, "BST": bst, "TMP": tmp})
 
 if __name__ == '__main__':
     app.run()
