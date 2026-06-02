@@ -31,3 +31,15 @@ body {
     margin: 0;
     color: #4ade80; /* A nice neon green */
 }
+
+.circle-progress {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(#4ade80 var(--progress), #353 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
