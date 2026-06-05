@@ -15,11 +15,36 @@
         </div>
 
         <div class="card">
+            <h2>CPU Temperature</h2>
+            <p id="tmp-value" class="data-text">Loading...</p>
+        </div>
+
+        <div class="card">
             <h2>Memory Usage</h2>
             <p id="mem-value" class="data-text">Loading...</p>
         </div>
-        
+
+        <div class="card">
+            <h2>Disk Usage</h2>
+            <p id="sto-value" class="data-text">Loading...</p>
         </div>
+      
+        <div class="card">
+            <h2>Bytes Sent</h2>
+            <p id="bst-value" class="data-text">Loading...</p>
+        </div>
+
+        <div class="card">
+            <h2>Bytes Received</h2>
+            <p id="brv-value" class="data-text">Loading...</p>
+        </div>
+
+        <div class="card">
+            <h2>Uptime</h2>
+            <p id="upt-value" class="data-text">Loading...</p>
+        </div>        
+        
+    </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
