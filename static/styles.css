@@ -9,12 +9,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    max-width: 400px;
 }
 
 .dashboard-grid {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
 }
@@ -36,7 +35,7 @@ body {
     font-size: 2rem;
     font-weight: bold;
     margin: 0;
-    color: #4ade80; /* A nice neon green */
+    color: #4ade80; 
 }
 
 .circle-progress {
@@ -51,10 +50,18 @@ body {
     margin: 0 auto;
 }
 
-.circle-progress-whitespace {
-
+.circle-progress::before {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background-color: #1e1e1e;
+    border-radius: 50%;
 }
 
 .circle-text {
-    
+    position: relative;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4ade80
 }
