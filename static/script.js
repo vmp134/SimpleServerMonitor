@@ -13,11 +13,17 @@ async function fetchStats() {
         // CPU
         const cpuPercent = data.CPU ?? null;
         if (cpuPercent !== null) {
+            let color = "#4ade80";
+            if (cpuPercent >= 75) color = "#f87171"
+            else if (cpuPercent >= 50) color = "#fbbf24"
+
             document.getElementById('cpu-value').innerText = cpuPercent.toFixed(1) + "%";
             document.getElementById('cpu-circle').style.setProperty('--progress', (cpuPercent * 3.6) + 'deg');
+            document.getElementById('cpu-circle').style.setProperty('--circle-color', color)
         } else {
             document.getElementById('cpu-value').innerText = "N/A";
             document.getElementById('cpu-circle').style.setProperty('--progress', '0deg');
+            document.getElementById('cpu-circle').style.setProperty('--circle-color', '#555')
         }
 
         // Temp
