@@ -19,7 +19,9 @@
 
             <div class="card">
                 <h2>CPU Temperature</h2>
-                <p id="tmp-value" class="data-text">Loading...</p>
+                <div class="circle-progress" id="tmp-circle" style="--progress: 0deg;">
+                    <span class="circle-text" id="tmp-value">0%</span>
+                </div>
             </div>
 
             <div class="card">
@@ -34,8 +36,10 @@
                 <div class="circle-progress" id="sto-circle" style="--progress: 0deg;">
                     <span class="circle-text" id="sto-value">0%</span>
                 </div>
-            </div>
+            </div>     
+        </div>
 
+        <div class="dashboard-grid">
             <div class="card">
                 <h2>Bytes Sent</h2>
                 <p id="bst-value" class="data-text">Loading...</p>
@@ -49,9 +53,9 @@
             <div class="card">
                 <h2>Uptime</h2>
                 <p id="upt-value" class="data-text">Loading...</p>
-            </div>        
-            
+            </div>   
         </div>
+
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>

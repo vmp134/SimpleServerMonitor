@@ -43,7 +43,7 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background: conic-gradient(var(--circle-color, #4ade80) var(--progress), #353 0deg);
+    background: conic-gradient(var(--circle-color, #4ade80) var(--progress), #333 0deg);
     display: flex;
     align-items: center;
     justify-content: center;
