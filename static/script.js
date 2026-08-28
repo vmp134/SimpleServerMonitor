@@ -32,9 +32,9 @@ async function fetchStats() {
             if (temperature >= 75) color = "#f87171";
             else if (temperature >= 50) color = "#fbbf24";
 
-            document.getElementById('cpu-value').innerText = temperature.toFixed(1) + "°C";
-            document.getElementById('cpu-circle').style.setProperty('--progress', (temperature * 3.6) + 'deg');
-            document.getElementById('cpu-circle').style.setProperty('--circle-color', color);            
+            document.getElementById('tmp-value').innerText = temperature.toFixed(1) + "°C";
+            document.getElementById('tmp-circle').style.setProperty('--progress', (temperature * 3.6) + 'deg');
+            document.getElementById('tmp-circle').style.setProperty('--circle-color', color);            
         } else {
             document.getElementById('tmp-value').innerText = "N/A";
             document.getElementById('tmp-circle').style.setProperty('--progress', '0deg');
@@ -80,15 +80,15 @@ async function fetchStats() {
                 prevBST = data.BST;
                 prevBRV = data.BRV;
                 isFirstRun = false;
-                document.getElementById('bst-value').innerText = "Calculating...";
-                document.getElementById('brv-value').innerText = "Calculating...";
+                document.getElementById('bst-value').innerText = "...";
+                document.getElementById('brv-value').innerText = "...";
             } else {
                 // Calculate speed based on the difference from 2 seconds ago
                 const bstPS = (data.BST - prevBST) / (time / 1000);
                 const brvPS = (data.BRV - prevBRV) / (time / 1000);
 
-                document.getElementById('bst-value').innerText = bstPS.toFixed(0) + " B/s";
-                document.getElementById('brv-value').innerText = brvPS.toFixed(0) + " B/s";
+                document.getElementById('bst-value').innerText = formatSpeed(bstPS);
+                document.getElementById('brv-value').innerText = formatSpeed(brvPS);
 
                 // Update baselines for the next tick
                 prevBST = data.BST;
@@ -112,6 +112,20 @@ async function fetchStats() {
         document.getElementById('brv-value').innerText = "Error";
         document.getElementById('upt-value').innerText = "Error";
     }
+}
+
+// Helper function outside fetchStats
+function formatSpeed(bytesPerSec) {
+    const units = [" B/s", " KB/s", " MB/s", " GB/s"];
+    let speed = Math.max(0, bytesPerSec); // Safety check for negative values
+    let unitIndex = 0;
+
+    while (speed >= 1024 && unitIndex < units.length - 1) {
+        speed /= 1024;
+        unitIndex++;
+    }
+
+    return speed.toFixed(1) + units[unitIndex];
 }
 
 // Run the function when page loads

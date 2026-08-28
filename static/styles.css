@@ -1,3 +1,8 @@
+:root {
+    --card-width: 180px;
+    --card-height: 180px;
+}
+
 body {
     background-color: #121212;
     color: white;
@@ -8,7 +13,7 @@ body {
 .dashboard {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 }
 
 .dashboard-grid {
@@ -20,6 +25,7 @@ body {
 
 .card {
     background-color: #1e1e1e;
+    width: var(--card-width);
     padding: 20px;
     border-radius: 8px;
     border: 1px solid #333;
@@ -40,8 +46,7 @@ body {
 
 .circle-progress {
     position: relative;
-    width: 150px;
-    height: 150px;
+    height: var(--card-height);
     border-radius: 50%;
     background: conic-gradient(var(--circle-color, #4ade80) var(--progress), #333 0deg);
     display: flex;

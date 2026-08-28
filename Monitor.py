@@ -1,6 +1,7 @@
 import psutil
 import time
 from flask import Flask, render_template, jsonify
+from collections import deque
 
 app = Flask(__name__)
 
